@@ -1,5 +1,5 @@
-# YOW_Assignment
+# **YOW_Assignment**
 
-how to run:
-docker-compose build
-docker-compose up
+## how to run:
+1. docker-compose build 
+2. docker-compose up

@@ -6,8 +6,8 @@ from typing import Optional
 class UserBase(BaseModel):
     email: str
     full_name: str
-    id: Optional[str] = None
-    age: Optional[int] = None
+    id: str | None = None
+    age: int | None = None
 
     @validator('email')
     def valid_email_address(cls, v):
@@ -20,19 +20,18 @@ class UserBase(BaseModel):
     def valid_full_name(cls, v):
         return v.title()
 
-
-class User(UserBase):
-    email: Optional[str] = None
-    full_name: Optional[str] = None
-    id: Optional[str] = None
-    age: Optional[int] = None
-
-    class Config:
-        orm_mode = True
-
     @validator('age')
     def valid_age(cls, v):
         if v is not None and not 0 < v < 120:
             raise ValueError('Are you sure you are a human??')
         return v
+
+
+class UserUpdate(UserBase):
+    email: Optional[str] = None
+    full_name: Optional[str] = None
+
+    class Config:
+        orm_mode = True
+
 
