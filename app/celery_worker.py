@@ -2,7 +2,7 @@ from celery import Celery
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-import models
+from . import models
 
 celery = Celery(__name__)
 celery.conf.broker_url = "redis://redis:6379/0"

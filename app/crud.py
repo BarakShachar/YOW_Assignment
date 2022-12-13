@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
-import schemas
-import models
-from celery_worker import create_task
+from . import schemas
+from . import models
+from .celery_worker import create_task
 
 
 def get_user_by_email(db: Session, user_email: str):
