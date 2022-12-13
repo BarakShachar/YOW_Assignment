@@ -4,7 +4,7 @@
 
 1. docker-compose up
 
-   4 container will be created: app, db, redis and celery_worker.
+   4 containers will be created: app, db, redis and celery_worker.
    
    you can see docs at "localhost/docs"
  
