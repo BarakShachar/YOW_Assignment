@@ -1,11 +1,12 @@
 from .database import Base
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Integer
 from sqlalchemy_utils import EmailType
-
 
 
 class User(Base):
     __tablename__ = 'User'
-    id = Column(String, primary_key=True)
+    email = Column(EmailType, unique=True, primary_key=True, index=True)
     full_name = Column(String)
-    email_address = Column(EmailType)
+    id = Column(String)
+    age = Column(Integer)
+
