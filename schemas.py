@@ -6,7 +6,6 @@ from typing import Optional
 class UserBase(BaseModel):
     email: str
     full_name: str
-    id: str | None = None
     age: int | None = None
 
     @validator('email')
@@ -17,7 +16,9 @@ class UserBase(BaseModel):
         return v
 
     @validator('full_name')
-    def valid_full_name(cls, v):
+    def valid_full_name(cls, v: str):
+        if " " not in v:
+            raise ValueError('you must enter first and last name with space between them')
         return v.title()
 
     @validator('age')
@@ -26,10 +27,13 @@ class UserBase(BaseModel):
             raise ValueError('Are you sure you are a human??')
         return v
 
+    class Config:
+        orm_mode = True
+
 
 class UserUpdate(UserBase):
-    email: Optional[str] = None
-    full_name: Optional[str] = None
+    email: str | None = None
+    full_name: str | None = None
 
     class Config:
         orm_mode = True
